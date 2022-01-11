@@ -15,8 +15,9 @@ class SpicesController < ApplicationController
     end
 
     def update
-        spice = Spice.update(spice_params)
-        render json: spice
+        spice = find_spice
+        spice.update(spice_params)
+        render json: spice, except: [:created_at, :updated_at]
     end
 
     def destroy
